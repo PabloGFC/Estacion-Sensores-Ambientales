@@ -1,0 +1,27 @@
+USE [IOT]
+GO
+/****** Object:  StoredProcedure [dbo].[GetMedicionesTiempoReal]    Script Date: 20/09/2024 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:        pgarcia
+-- Create date: 20/09/2024
+-- Description: Recuperación datos medicion sensores
+-- =============================================
+ALTER PROCEDURE [dbo].[GetMedicionesTiempoReal]
+AS
+BEGIN
+    -- SET NOCOUNT ON added to prevent extra result sets from
+    -- interfering with SELECT statements.
+    SET NOCOUNT ON;
+
+    -- Recupera la medida más reciente
+    SELECT top 1
+        format(dtMed_fch_medicion,'hh:mm') Hora,
+        *
+    FROM [dbo].[tMediciones] 
+    ORDER BY dtMed_fch_medicion desc
+END

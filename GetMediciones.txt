@@ -1,0 +1,28 @@
+USE [IOT]
+GO
+/****** Object:  StoredProcedure [dbo].[GetMediciones]    Script Date: 20/09/2024 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:        pgarcia
+-- Create date: 20/09/2024
+-- Description: Recuperación datos medicion sensores
+-- =============================================
+ALTER PROCEDURE [dbo].[GetMediciones]
+AS
+BEGIN
+    -- SET NOCOUNT ON added to prevent extra result sets from
+    -- interfering with SELECT statements.
+    SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+    SELECT 
+        format(dtMed_fch_medicion,'dd-MM-yy') Fecha,
+        format(dtMed_fch_medicion,'hh:mm') Hora,
+        deMed_temperatura Temperatura, inMed_humedad Humedad,inMed_co2 CO2 
+    FROM [dbo].[tMediciones] 
+    ORDER BY dtMed_fch_medicion
+END
